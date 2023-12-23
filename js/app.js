@@ -2,6 +2,14 @@ let friends = [];
 
 function adicionar() {
     let friendInput = document.getElementById('nome-amigo');
+    if(friendInput.value ==''){
+        alert('Não é permitido um campo vazio, necessita ser realizado o informe do nome do amigo.');
+        return;
+    }
+    if(friends.includes(friendInput.value)){
+        alert('Nome já encontra-se presente na lista')
+        return
+    }
     let list = document.getElementById('lista-amigos');
     friends.push(friendInput.value.trim());
     if (list.textContent === '') {
@@ -15,6 +23,10 @@ function adicionar() {
 }
 
 function sortear() {
+    if(friends.length < 4){
+        alert('Necessário pelo menos quatro usuários inseridos');
+        return;
+    }
     embaralha(friends);
     let sorteio = document.getElementById('lista-sorteio');
     for (let i = 0; i < friends.length - 1; i++) {
